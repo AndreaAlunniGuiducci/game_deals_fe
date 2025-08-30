@@ -1,0 +1,50 @@
+@import '@/variables';
+
+.button {
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: $radius;
+  font-size: 1rem;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: background-color $transition-fast, transform $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.primary {
+    background-color: $color-primary;
+    color: $color-light;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.secondary {
+    background-color: $color-secondary;
+    color: $color-light;
+
+    &:hover {
+      background-color: darken($color-secondary, 10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-light;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
