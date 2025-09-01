@@ -1,0 +1,36 @@
+@import "@/variables";
+
+.gameCard {
+  border: 1px solid $color-border;
+  width: fit-content;
+  box-shadow: $shadow-soft;
+  border-radius: 4px;
+
+  &.steam {
+    .cardHeader {
+      background-color: $color-steam;
+    }
+    .gameTitle,
+    .normalPrice {
+      color: $color-steam;
+    }
+  }
+  &.humble {
+    .cardHeader {
+      background-color: $color-humble;
+    }
+    .gameTitle,
+    .normalPrice {
+      color: $color-humble;
+    }
+  }
+  &.gog {
+    .cardHeader {
+      background-color: $color-gog;
+    }
+    .gameTitle,
+    .normalPrice {
+      color: $color-gog;
+    }
+  }
+}

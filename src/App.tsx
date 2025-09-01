@@ -1,7 +1,9 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import Header from "./components/molecules/header";
-import Test from "./pages/test";
+import AnonymousPage from "./pages/anonymousPage";
+import Home from "./pages/test/home";
+import { getJwt } from "./utils/getJwt";
 
 const router = createBrowserRouter([
   {
@@ -9,10 +11,10 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header title="Game Deals" />
-        <Outlet />
+        {getJwt() ? <Outlet /> : <AnonymousPage />}
       </>
     ),
-    children: [{ path: "test", element: <Test /> }],
+    children: [{ path: "", element: <Home /> }],
   },
 ]);
 

@@ -5,6 +5,9 @@ $color-bg: #f8fafc;
 $color-dark: #1e293b;
 $color-light: #ffffff;
 $color-border: #e2e8f0;
+$color-steam: #171a21;
+$color-gog: #86328a;
+$color-humble: #cb2924;
 
 $font-family-base: "Inter", "Roboto", sans-serif;
 $font-size-base: 16px;
@@ -12,5 +15,5 @@ $font-weight-regular: 400;
 $font-weight-bold: 600;
 
 $transition-fast: 0.2s ease-in-out;
-$radius: 0.75rem;
 $shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+$header-height: 72px;

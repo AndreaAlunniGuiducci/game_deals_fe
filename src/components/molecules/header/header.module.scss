@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@import "@/variables.scss";
 
 .header {
   position: sticky;
@@ -11,6 +11,11 @@
   box-shadow: $shadow-soft;
   color: $color-light;
   width: 100%;
+  height: $header-height;
+
+  &.anonymous {
+    justify-content: center;
+  }
 
   .logo {
     font-size: 1.5rem;
@@ -40,7 +45,7 @@
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         bottom: -3px;
