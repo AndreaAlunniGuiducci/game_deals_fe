@@ -1,0 +1,39 @@
+@import "@/variables";
+
+.loaderLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $color-bg-blur;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 32px;
+    .spinner {
+      width: 25px;
+      height: 25px;
+      border: 2px solid $color-dark;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
