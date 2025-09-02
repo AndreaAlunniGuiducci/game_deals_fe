@@ -2,7 +2,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/molecules/header";
 import AnonymousPage from "./pages/anonymousPage";
-import Home from "./pages/test/home";
+import Home from "./pages/home";
 import { getJwt } from "./utils/getJwt";
 
 const router = createBrowserRouter([
@@ -14,7 +14,11 @@ const router = createBrowserRouter([
         {getJwt() ? <Outlet /> : <AnonymousPage />}
       </>
     ),
-    children: [{ path: "", element: <Home /> }],
+    children: [
+      { path: "", element: <Home /> },
+      { path: "register", element: <Home /> },
+      { path: "login", element: <Home /> },
+    ],
   },
 ]);
 

@@ -4,8 +4,8 @@ export type GameCardProps = {
   store: "steam" | "humble" | "gog";
   gameTitle: string;
   gameImage: string;
-  salePrice: string;
-  normalPrice: string;
+  salePrice: number;
+  normalPrice: number;
 };
 
 const GameCard = ({
@@ -26,8 +26,8 @@ const GameCard = ({
       </div>
       <div className={styles.saleDetail}>
         <div className={styles.gameTitle}>{gameTitle}</div>
-        <div className={styles.salePrice}>{salePrice}</div>
-        <div className={styles.normalPrice}>{normalPrice}</div>
+        <div className={styles.salePrice}>{salePrice}$</div>
+        <div className={styles.normalPrice}>Instead of {normalPrice}$</div>
       </div>
     </div>
   );

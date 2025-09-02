@@ -1,36 +1,71 @@
 @import "@/variables";
 
 .gameCard {
-  border: 1px solid $color-border;
-  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background: $color-dark;
+  border-radius: $radius;
+  overflow: hidden;
   box-shadow: $shadow-soft;
-  border-radius: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 
-  &.steam {
-    .cardHeader {
-      background-color: $color-steam;
-    }
-    .gameTitle,
-    .normalPrice {
-      color: $color-steam;
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: $shadow-soft;
+  }
+
+  .cardHeader {
+    height: 220px;
+    overflow: hidden;
+
+    .gameImage {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.08);
+      }
     }
   }
-  &.humble {
-    .cardHeader {
-      background-color: $color-humble;
+
+  .saleDetail {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    background: linear-gradient(to top, #101010 80%, transparent);
+    gap: 6px;
+    flex-grow: 1;
+
+    .gameTitle {
+      color: $color-light;
     }
-    .gameTitle,
+
+    .salePrice {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #00ff85;
+    }
+
     .normalPrice {
-      color: $color-humble;
+      font-size: 0.9rem;
+      color: $color-bg-blur;
+      text-decoration: line-through;
     }
   }
-  &.gog {
-    .cardHeader {
-      background-color: $color-gog;
-    }
-    .gameTitle,
-    .normalPrice {
-      color: $color-gog;
-    }
-  }
+}
+
+/* Colori per store */
+.steam {
+  border-top: 4px solid #1b92e6;
+}
+
+.humble {
+  border-top: 4px solid #ff7043;
+}
+
+.gog {
+  border-top: 4px solid #9d4edd;
 }

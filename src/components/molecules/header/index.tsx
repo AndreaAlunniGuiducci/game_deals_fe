@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./header.module.scss";
+import Button from "../../atoms/button";
+import { loginUser } from "../../../services/services";
+import { deleteUser } from "../../../utils/deleteUser";
 
 interface HeaderProps {
   isLoggedIn?: boolean;

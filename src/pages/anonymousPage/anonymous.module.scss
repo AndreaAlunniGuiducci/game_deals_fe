@@ -4,4 +4,13 @@
   width: 100vw;
   min-height: calc(100vh - $header-height);
   background-color: $color-bg;
+  .dealsList {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+    > * {
+      flex: 1;
+    }
+  }
 }
