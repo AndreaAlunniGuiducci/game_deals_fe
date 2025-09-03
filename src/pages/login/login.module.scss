@@ -1,0 +1,13 @@
+@import "@/variables";
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "./anonymous.module.scss";
-import GameCard from "../../components/organisms/gameCard";
-import { getDeals, loginUser } from "../../services/services";
 import Button from "../../components/atoms/button";
-import { deleteUser } from "../../utils/deleteUser";
+import GameCard from "../../components/organisms/gameCard";
+import { getDeals } from "../../services/services";
+import styles from "./anonymous.module.scss";
 
 const AnonymousPage = () => {
   const [dealsList, setDealsList] = useState<DealsList[]>([]);
@@ -35,10 +34,10 @@ const AnonymousPage = () => {
       <div className={styles.authContainer}>
         <p>Register or login to view all offer and filter it</p>
         <div className={styles.authButtons}>
-          <a href="">
+          <a href="register">
             <Button>Register</Button>
           </a>
-          <a href="">
+          <a href="login">
             <Button>Login</Button>
           </a>
         </div>

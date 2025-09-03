@@ -35,18 +35,49 @@ export const loginUser = async ({
   password: string;
 }) => {
   try {
-    fetch(`${BASE_URL}login/`, {
+    const response = await fetch(`${BASE_URL}login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        addUser(data.access);
-      });
+    });
+    const data = await response.json();
+    if (data.detail) {
+      return { error: data.detail };
+    } else {
+      addUser(data.access);
+      return;
+    }
   } catch (error) {
     console.error("Error logging in user:", error);
+    return null;
+  }
+};
+
+export const registerUser = async ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}) => {
+  try {
+    const response = await fetch(`${BASE_URL}register/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
+    if (data.error) {
+      return data.error;
+    } else {
+      loginUser({ username, password });
+      window.location.href = "/";
+    }
+  } catch (error) {
+    console.error("Error registering user:", error);
   }
 };
