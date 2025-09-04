@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/atoms/button";
 import InputText from "../../components/atoms/inputText";
 import { loginUser } from "../../services/services";
+import { setLoading } from "../../store/slices/loadingSlice";
 import styles from "./login.module.scss";
-import { useNavigate } from "react-router-dom";
-import Loader from "../../components/organisms/loader";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (username && password) {
@@ -24,7 +25,6 @@ const Login = () => {
 
   return (
     <div className={styles.loginPage}>
-      {loader && <Loader />}
       <h2>Login</h2>
       <div className={styles.inputWrapper}>
         <InputText
@@ -47,9 +47,9 @@ const Login = () => {
       </p>
       <Button
         onClick={async () => {
-          setLoader(true);
+          dispatch(setLoading(true));
           const data = await loginUser({ username, password });
-          setLoader(false);
+          dispatch(setLoading(false));
           if (data?.error) {
             setLoginError(data.error);
             return;

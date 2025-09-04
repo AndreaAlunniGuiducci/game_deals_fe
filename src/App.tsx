@@ -1,3 +1,6 @@
+import "react";
+import type React from "react";
+import { useSelector } from "react-redux";
 import {
   Navigate,
   Outlet,
@@ -6,14 +9,14 @@ import {
 } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/molecules/header";
+import Loader from "./components/organisms/loader";
 import AnonymousPage from "./pages/anonymousPage";
 import Home from "./pages/home";
-import { getJwt } from "./utils/getJwt";
-import "react";
-import type React from "react";
-import { routePath } from "./utils/routePath";
-import Register from "./pages/register";
 import Login from "./pages/login/inde";
+import Register from "./pages/register";
+import { getJwt } from "./utils/getJwt";
+import { routePath } from "./utils/routePath";
+import type { StoreType } from "./store/store";
 
 function ProtectedRoute({ children }: { children: React.JSX.Element }) {
   const isAuthenticated = !!getJwt();
@@ -60,9 +63,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const isLoading = useSelector(
+    (state: StoreType) => state?.isLoading?.data.isLoading
+  );
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      {isLoading ? <Loader /> : <RouterProvider router={router} />}
     </div>
   );
 }

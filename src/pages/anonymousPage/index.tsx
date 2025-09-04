@@ -3,14 +3,20 @@ import Button from "../../components/atoms/button";
 import GameCard from "../../components/organisms/gameCard";
 import { getDeals } from "../../services/services";
 import styles from "./anonymous.module.scss";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../store/slices/loadingSlice";
 
 const AnonymousPage = () => {
+  const dispatch = useDispatch();
   const [dealsList, setDealsList] = useState<DealsList[]>([]);
+  const dealsListRetrive = async () => {
+    const data = await getDeals();
+    dispatch(setLoading(false));
+    setDealsList(data);
+  };
 
   useEffect(() => {
-    getDeals().then((data) => {
-      setDealsList(data);
-    });
+    dealsListRetrive();
   }, []);
 
   return (

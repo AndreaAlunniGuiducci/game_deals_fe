@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Button from "../../components/atoms/button";
 import InputText from "../../components/atoms/inputText";
-import styles from "./register.module.scss";
 import { registerUser } from "../../services/services";
+import styles from "./register.module.scss";
+import { setLoading } from "../../store/slices/loadingSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,7 +24,7 @@ const Register = () => {
     ) {
       setButtonDisabled(false);
     } else if (confirmPassword && password !== confirmPassword) {
-        setPasswordError("Passwords don't match");
+      setPasswordError("Passwords don't match");
     } else {
       setButtonDisabled(true);
     }
@@ -59,7 +62,9 @@ const Register = () => {
       </p>
       <Button
         onClick={async () => {
+          dispatch(setLoading(true));
           const register = await registerUser({ username, password });
+          dispatch(setLoading(false));
           setRegisterError(register || "");
         }}
         disabled={buttonDisableed}
