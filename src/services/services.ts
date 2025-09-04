@@ -12,9 +12,23 @@ const params = token
     }
   : {};
 
-export const getDeals = async (): Promise<DealsList[]> => {
+export const getDeals = async (): Promise<{ results: DealsList[] }> => {
   try {
     const response = await fetch(`${BASE_URL}deals/`, {
+      method: "GET",
+      ...params,
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching deals:", error);
+    return { results: [] };
+  }
+};
+
+export const getStore = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}store/`, {
       method: "GET",
       ...params,
     });

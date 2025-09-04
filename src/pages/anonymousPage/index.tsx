@@ -9,7 +9,9 @@ import { setLoading } from "../../store/slices/loadingSlice";
 const AnonymousPage = () => {
   const dispatch = useDispatch();
   const [dealsList, setDealsList] = useState<DealsList[]>([]);
+
   const dealsListRetrive = async () => {
+    dispatch(setLoading(true));
     const data = await getDeals();
     dispatch(setLoading(false));
     setDealsList(data);

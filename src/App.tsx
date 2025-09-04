@@ -68,7 +68,7 @@ function App() {
   );
   return (
     <div className="App">
-      {isLoading ? <Loader /> : <RouterProvider router={router} />}
+      {isLoading && <Loader />} <RouterProvider router={router} />
     </div>
   );
 }

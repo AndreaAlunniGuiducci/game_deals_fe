@@ -1,5 +1,5 @@
 interface Store {
-  storeID: number;
+  store_id: number;
   store_name: string;
   store_logo_url: string;
   store_banner_url: string;
