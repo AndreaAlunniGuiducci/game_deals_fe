@@ -26,7 +26,9 @@ const GameCard = ({
       </div>
       <div className={styles.saleDetail}>
         <div className={styles.gameTitle}>{gameTitle}</div>
-        <div className={styles.salePrice}>{salePrice}$</div>
+        <div className={styles.salePrice}>
+          {salePrice <= 0 ? "Free" : salePrice + "$"}
+        </div>
         <div className={styles.normalPrice}>Instead of {normalPrice}$</div>
       </div>
     </div>

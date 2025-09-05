@@ -12,17 +12,48 @@ const params = token
     }
   : {};
 
-export const getDeals = async (): Promise<{ results: DealsList[] }> => {
+export const getDeals = async (
+  paramsObj?: Record<string, string>,
+  offset?: string | null
+): Promise<{
+  results: DealsList[];
+  next: string | null;
+  previous: string | null;
+  count: number;
+} | null> => {
   try {
-    const response = await fetch(`${BASE_URL}deals/`, {
-      method: "GET",
-      ...params,
-    });
+    const apiParams = new URLSearchParams();
+    if (paramsObj?.store) {
+      apiParams.set("store__store_name", paramsObj.store);
+    }
+    if (paramsObj?.price) {
+      if (paramsObj.price.includes("-")) {
+        const [min, max] = paramsObj.price.split("-");
+        apiParams.set("sale_price__gte", min);
+        apiParams.set("sale_price__lte", max);
+      } else if (paramsObj.price === "80") {
+        apiParams.set("sale_price__gte", "80");
+      }
+    }
+    if (paramsObj?.sorting) {
+      apiParams.set("ordering", paramsObj.sorting);
+    }
+    if (!!offset) {
+      apiParams.set("offset", offset);
+    }
+
+    const response = await fetch(
+      `${BASE_URL}deals/${paramsObj || offset !== undefined ? "?" + apiParams.toString() : ""}`,
+      {
+        method: "GET",
+        ...params,
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
     console.error("Error fetching deals:", error);
-    return { results: [] };
+    return null;
   }
 };
 
