@@ -14,7 +14,7 @@ const AnonymousPage = () => {
     dispatch(setLoading(true));
     const data = await getDeals();
     dispatch(setLoading(false));
-    setDealsList(data);
+    setDealsList(data.results);
   };
 
   useEffect(() => {

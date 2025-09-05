@@ -60,7 +60,7 @@ export const loginUser = async ({
       return { error: data.detail };
     } else {
       addUser(data.access);
-      return;
+      return data.access;
     }
   } catch (error) {
     console.error("Error logging in user:", error);

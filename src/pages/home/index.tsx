@@ -33,11 +33,16 @@ const Home = () => {
     dispatch(setLoading(false));
     setStoreList(storeData);
   };
+  
   const retriveDeals = async () => {
     dispatch(setLoading(true));
     const data = await getDeals();
     dispatch(setLoading(false));
-    setDealsList(data.results);
+    if (data) {
+      setDealsList(data.results);
+    }else {
+      setDealsList([])
+    }
   };
 
   useEffect(() => {

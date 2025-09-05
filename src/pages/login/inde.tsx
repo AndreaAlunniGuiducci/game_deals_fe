@@ -6,6 +6,8 @@ import InputText from "../../components/atoms/inputText";
 import { loginUser } from "../../services/services";
 import { setLoading } from "../../store/slices/loadingSlice";
 import styles from "./login.module.scss";
+import { routePath } from "../../utils/routePath";
+import { setJwt } from "../../store/slices/jwtSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -54,7 +56,8 @@ const Login = () => {
             setLoginError(data.error);
             return;
           } else {
-            navigate("/");
+            dispatch(setJwt(data))
+            window.location.href = routePath.home
           }
         }}
         disabled={buttonDisabled}
