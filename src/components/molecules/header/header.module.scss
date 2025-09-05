@@ -12,6 +12,7 @@
   color: $color-light;
   width: 100%;
   height: $header-height;
+  z-index: 9;
 
   &.anonymous {
     justify-content: center;
@@ -28,35 +29,35 @@
     }
   }
 
-  .nav {
-    display: flex;
-    gap: 1.5rem;
-
-    &-link {
-      font-size: 1rem;
-      font-weight: $font-weight-regular;
-      color: $color-light;
-      text-decoration: none;
-      position: relative;
-      transition: color $transition-fast;
-
-      &:hover {
-        color: $color-secondary;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -3px;
-        width: 0%;
-        height: 2px;
-        background-color: $color-secondary;
-        transition: width $transition-fast;
-      }
-
-      &:hover::after {
-        width: 100%;
+  .userContainer {
+    position: relative;
+    .userBanner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-secondary;
+      border-radius: 100%;
+      width: 52px;
+      height: 52px;
+      cursor: pointer;
+    }
+    .userDetail {
+      border-radius: $radius;
+      box-shadow: $shadow-soft;
+      color: $color-dark;
+      background-color: $color-bg;
+      position: absolute;
+      width: 300px;
+      right: 0;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      p {
+        margin: 0;
+        text-align: center;
+        font-size: 24px;
       }
     }
   }

@@ -43,7 +43,9 @@ export const getDeals = async (
     }
 
     const response = await fetch(
-      `${BASE_URL}deals/${paramsObj || offset !== undefined ? "?" + apiParams.toString() : ""}`,
+      `${BASE_URL}deals/${
+        paramsObj || offset !== undefined ? "?" + apiParams.toString() : ""
+      }`,
       {
         method: "GET",
         ...params,
@@ -90,8 +92,8 @@ export const loginUser = async ({
     if (data.detail) {
       return { error: data.detail };
     } else {
-      addUser(data.access);
-      return data.access;
+      addUser(data.access, data.username);
+      return data;
     }
   } catch (error) {
     console.error("Error logging in user:", error);

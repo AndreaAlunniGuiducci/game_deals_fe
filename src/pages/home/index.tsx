@@ -135,16 +135,22 @@ const Home = () => {
         />
       </div>
       <div className={styles.dealsList}>
-        {dealsList.map((deal) => (
-          <GameCard
-            key={deal.external_id}
-            gameImage={deal.image_url}
-            gameTitle={deal.game_name}
-            normalPrice={deal.normal_price}
-            salePrice={deal.sale_price}
-            store={deal.store.store_name as "steam"}
-          />
-        ))}
+        {dealsList.length > 0 ? (
+          dealsList.map((deal) => (
+            <GameCard
+              key={deal.external_id}
+              gameImage={deal.image_url}
+              gameTitle={deal.game_name}
+              normalPrice={deal.normal_price}
+              salePrice={deal.sale_price}
+              store={deal.store.store_name as "steam"}
+            />
+          ))
+        ) : (
+          <div className={styles.dealsNotFound}>
+            Sorry we dont have deals for this parameter
+          </div>
+        )}
       </div>
       <div className={styles.ctaContainer}>
         <Button

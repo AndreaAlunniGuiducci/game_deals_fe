@@ -14,8 +14,12 @@
     > * {
       flex: 0 1 calc(25% - 8px);
     }
+    .dealsNotFound {
+      flex: 1;
+      text-align: center;
+    }
   }
-  .ctaContainer{
+  .ctaContainer {
     align-self: center;
   }
 }

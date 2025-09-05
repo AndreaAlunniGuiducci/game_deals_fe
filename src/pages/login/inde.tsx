@@ -7,7 +7,7 @@ import { loginUser } from "../../services/services";
 import { setLoading } from "../../store/slices/loadingSlice";
 import styles from "./login.module.scss";
 import { routePath } from "../../utils/routePath";
-import { setJwt } from "../../store/slices/jwtSlice";
+import { setUser } from "../../store/slices/jwtSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -55,9 +55,9 @@ const Login = () => {
           if (data?.error) {
             setLoginError(data.error);
             return;
-          } else {
-            dispatch(setJwt(data))
-            window.location.href = routePath.home
+          } else if (data.access) {
+            dispatch(setUser({ jwt: data.access, username: data.username }));
+            window.location.href = routePath.home;
           }
         }}
         disabled={buttonDisabled}

@@ -7,7 +7,7 @@ export interface StoreType {
     data: { isLoading: boolean };
   };
   myJWT: {
-    data: { jwt: string };
+    data: { jwt: string; username: string };
   };
 }
 

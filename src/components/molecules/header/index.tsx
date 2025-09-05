@@ -1,26 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./header.module.scss";
+import { getJwt, getUsername } from "../../../utils/getJwt";
+import Button from "../../atoms/button";
+import { deleteUser } from "../../../utils/deleteUser";
 
 interface HeaderProps {
   isLoggedIn?: boolean;
   title: string;
-  links?: { label: string; href: string }[];
 }
 
-const Header: React.FC<HeaderProps> = ({ isLoggedIn, title, links }) => {
+const Header: React.FC<HeaderProps> = ({ isLoggedIn, title }) => {
+  const [username, setUsername] = useState<string>("");
+  const [userBannerToggle, setUserBannerToggle] = useState(false);
+  useEffect(() => {
+    const username = getUsername();
+    if (username) setUsername(username);
+  }, [isLoggedIn]);
+
+  console.log("USERNAME", username, isLoggedIn);
+
   return (
     <header
       className={`${styles.header} ${isLoggedIn ? "" : styles.anonymous}`}
     >
       <div className={styles.logo}>{title}</div>
-      {isLoggedIn && (
-        <nav className={styles.nav}>
-          {/* {links.map((link, index) => (
-          <a key={index} href={link.href} className={styles.header}__nav-link">
-            {link.label}
-          </a>
-        ))} */}
-        </nav>
+      {isLoggedIn && username && (
+        <div className={styles.userContainer}>
+          <div
+            className={styles.userBanner}
+            onClick={() => {
+              setUserBannerToggle(!userBannerToggle);
+            }}
+          >
+            {username[0].toUpperCase()}
+          </div>
+          {userBannerToggle && (
+            <div className={styles.userDetail}>
+              <p>{username}</p>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  deleteUser();
+                }}
+              >
+                Logout
+              </Button>
+            </div>
+          )}
+        </div>
       )}
     </header>
   );

@@ -7,7 +7,6 @@ const ProtectedRoute = ({ children }: { children: React.JSX.Element }) => {
   const jwt = useSelector((state: StoreType) => state.myJWT.data.jwt);
 
   const isAuthenticated = !!getJwt() || !!jwt;
-  console.log("AUTHENTICATED", isAuthenticated, "\nGET",getJwt(), "\nSTORE",jwt)
   return isAuthenticated ? children : <Navigate to="/anonymous" replace />;
 };
 
