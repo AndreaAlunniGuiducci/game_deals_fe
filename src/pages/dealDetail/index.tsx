@@ -16,10 +16,12 @@ const DealDetail = () => {
   const retrieveDealDetail = async () => {
     if (dealId) {
       dispatch(setLoading(true));
-      const data = await getDeals({ external_id: dealId });
-      dispatch(setLoading(false));
-      if (data?.results) {
-        setDealDetail(data?.results[0]);
+      if (!!dealId) {
+        const data = await getDeals({ external_id: dealId });
+        dispatch(setLoading(false));
+        if (data?.results) {
+          setDealDetail(data?.results[0]);
+        }
       }
     }
   };

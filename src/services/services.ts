@@ -42,8 +42,8 @@ export const getDeals = async (
     if (!!offset) {
       apiParams.set("offset", offset);
     }
-    if (paramsObj?.externalId) {
-      apiParams.set("external_id", paramsObj.externalId);
+    if (paramsObj?.external_id) {
+      apiParams.set("external_id", paramsObj.external_id);
     }
 
     const response = await fetch(
