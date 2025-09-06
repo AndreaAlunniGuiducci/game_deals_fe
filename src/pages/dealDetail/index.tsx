@@ -12,7 +12,6 @@ const DealDetail = () => {
   const { dealId } = useParams();
   const navigate = useNavigate();
   const [dealDetail, setDealDetail] = useState<DealsList>();
-  const [releaseDate, setReleaseDate] = useState<number>(0);
 
   const retrieveDealDetail = async () => {
     if (dealId) {
@@ -28,32 +27,26 @@ const DealDetail = () => {
     retrieveDealDetail();
   }, [dealId]);
 
-  useEffect(() => {
-    if (dealDetail?.release_date) {
-      const dateNumber = parseInt(dealDetail.release_date);
-      setReleaseDate(dateNumber);
-      console.log(dateNumber);
-    }
-  }, [dealDetail]);
-
   return (
     <div className={styles.dealDetail}>
       <div className={styles.hero}>
         <img src={dealDetail?.image_url} alt={dealDetail?.game_name} />
       </div>
-      <div className={styles.dealDetail}>
+      <div className={styles.dealDetailContainer}>
         <h3 className={styles.gameName}>{dealDetail?.game_name}</h3>
         <p className={styles.storeName}>on {dealDetail?.store.store_name}</p>
         <ul>
           <li>
-            Price: {dealDetail?.normal_price}${" "}
-            <p>insted of {dealDetail?.normal_price}$</p>
+            <span>
+              Price: {dealDetail?.sale_price}${" "}
+              <p>insted of {dealDetail?.normal_price}$</p>
+            </span>
           </li>
           <li>Deal rating: {dealDetail?.deal_rating}</li>
           <li>Game Rating: {dealDetail?.rating_text}</li>
           <li>
             Released:
-            {new Date(releaseDate).toLocaleDateString("en", {
+            {new Date(dealDetail?.release_date ?? 0).toLocaleDateString("en", {
               month: "long",
               year: "numeric",
             })}
