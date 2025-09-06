@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styles from "./header.module.scss";
-import { getJwt, getUsername } from "../../../utils/getJwt";
-import Button from "../../atoms/button";
 import { deleteUser } from "../../../utils/deleteUser";
+import { getUsername } from "../../../utils/getJwt";
+import Button from "../../atoms/button";
+import styles from "./header.module.scss";
 
 interface HeaderProps {
   isLoggedIn?: boolean;
@@ -12,12 +12,11 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isLoggedIn, title }) => {
   const [username, setUsername] = useState<string>("");
   const [userBannerToggle, setUserBannerToggle] = useState(false);
+  
   useEffect(() => {
     const username = getUsername();
     if (username) setUsername(username);
   }, [isLoggedIn]);
-
-  console.log("USERNAME", username, isLoggedIn);
 
   return (
     <header

@@ -1,5 +1,6 @@
 import { addUser } from "../utils/addUser";
 import { getJwt } from "../utils/getJwt";
+import { routePath } from "../utils/routePath";
 
 const BASE_URL = "http://127.0.0.1:8000/api/";
 const token = getJwt();
@@ -120,8 +121,8 @@ export const registerUser = async ({
     if (data.error) {
       return data.error;
     } else {
-      loginUser({ username, password });
-      window.location.href = "/";
+      await loginUser({ username, password });
+      window.location.href = routePath.home
     }
   } catch (error) {
     console.error("Error registering user:", error);

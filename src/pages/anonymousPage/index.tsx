@@ -14,7 +14,9 @@ const AnonymousPage = () => {
     dispatch(setLoading(true));
     const data = await getDeals();
     dispatch(setLoading(false));
-    setDealsList(data.results);
+    if (data?.results) {
+      setDealsList(data.results);
+    }
   };
 
   useEffect(() => {
@@ -32,9 +34,7 @@ const AnonymousPage = () => {
               gameTitle={i.game_name}
               normalPrice={i.normal_price}
               salePrice={i.sale_price}
-              store={
-                i.store.store_name?.toLowerCase() as "steam" | "humble" | "gog"
-              }
+              store={{ name: i.store.store_name, img: i.store.store_banner_url }}
             />
           );
         })}

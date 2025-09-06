@@ -3,4 +3,5 @@ export const routePath = {
     anonymous: "/anonymous",
     login: "/login",
     register: "/register",
+    deal_detail:"/deal/:dealId"
 }

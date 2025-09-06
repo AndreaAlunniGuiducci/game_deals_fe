@@ -40,6 +40,14 @@ function App() {
           ),
         },
         {
+          path: routePath.deal_detail,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: routePath.register,
           element: <Register />,
         },

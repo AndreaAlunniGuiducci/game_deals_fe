@@ -24,6 +24,7 @@
       height: 100%;
       object-fit: contain;
       transition: transform 0.4s ease;
+      padding: 0 10%;
 
       &:hover {
         transform: scale(1.08);
@@ -44,9 +45,18 @@
     }
 
     .salePrice {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #00ff85;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      p {
+        font-size: 20px;
+        font-weight: 800;
+        color: #00ff85;
+        margin: 0;
+      }
+      img {
+        height: 20px;
+      }
     }
 
     .normalPrice {

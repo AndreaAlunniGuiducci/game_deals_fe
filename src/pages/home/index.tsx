@@ -143,7 +143,10 @@ const Home = () => {
               gameTitle={deal.game_name}
               normalPrice={deal.normal_price}
               salePrice={deal.sale_price}
-              store={deal.store.store_name as "steam"}
+              store={{
+                name: deal.store.store_name,
+                img: deal.store.store_banner_url,
+              }}
             />
           ))
         ) : (

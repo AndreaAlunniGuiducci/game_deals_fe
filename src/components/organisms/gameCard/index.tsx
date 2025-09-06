@@ -1,7 +1,7 @@
 import styles from "./gameCard.module.scss";
 
 export type GameCardProps = {
-  store: "steam" | "humble" | "gog";
+  store: { img: string; name: string };
   gameTitle: string;
   gameImage: string;
   salePrice: number;
@@ -16,7 +16,7 @@ const GameCard = ({
   store,
 }: GameCardProps) => {
   return (
-    <div className={`${styles.gameCard} ${styles[store]}`}>
+    <div className={styles.gameCard}>
       <div className={styles.cardHeader}>
         <img
           className={styles.gameImage}
@@ -27,7 +27,8 @@ const GameCard = ({
       <div className={styles.saleDetail}>
         <div className={styles.gameTitle}>{gameTitle}</div>
         <div className={styles.salePrice}>
-          {salePrice <= 0 ? "Free" : salePrice + "$"}
+          <p>{salePrice <= 0 ? "Free" : salePrice + "$"} on</p>
+          <img src={store.img} alt={store.name} />
         </div>
         <div className={styles.normalPrice}>Instead of {normalPrice}$</div>
       </div>
