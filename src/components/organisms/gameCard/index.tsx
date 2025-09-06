@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./gameCard.module.scss";
+import { routePath } from "../../../utils/routePath";
 
 export type GameCardProps = {
+  dealId: string;
   store: { img: string; name: string };
   gameTitle: string;
   gameImage: string;
@@ -13,10 +16,18 @@ const GameCard = ({
   gameTitle,
   normalPrice,
   salePrice,
-  store,
+  store,dealId
 }: GameCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.gameCard}>
+    <div
+      className={styles.gameCard}
+      onClick={() => {
+        const path = routePath.deal_detail.replace(":dealId", dealId)
+        navigate(path)
+      }}
+    >
       <div className={styles.cardHeader}>
         <img
           className={styles.gameImage}

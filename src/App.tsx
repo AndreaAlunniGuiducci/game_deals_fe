@@ -12,6 +12,7 @@ import type { StoreType } from "./store/store";
 import { routePath } from "./utils/routePath";
 import ProtectedRoute from "./pages/protectedRoute";
 import { getJwt } from "./utils/getJwt";
+import DealDetail from "./pages/dealDetail";
 
 function App() {
   const isLoading = useSelector(
@@ -43,7 +44,7 @@ function App() {
           path: routePath.deal_detail,
           element: (
             <ProtectedRoute>
-              <Home />
+              <DealDetail />
             </ProtectedRoute>
           ),
         },

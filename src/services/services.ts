@@ -42,6 +42,9 @@ export const getDeals = async (
     if (!!offset) {
       apiParams.set("offset", offset);
     }
+    if (paramsObj?.externalId) {
+      apiParams.set("external_id", paramsObj.externalId);
+    }
 
     const response = await fetch(
       `${BASE_URL}deals/${
@@ -122,7 +125,7 @@ export const registerUser = async ({
       return data.error;
     } else {
       await loginUser({ username, password });
-      window.location.href = routePath.home
+      window.location.href = routePath.home;
     }
   } catch (error) {
     console.error("Error registering user:", error);

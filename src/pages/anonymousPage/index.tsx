@@ -30,6 +30,7 @@ const AnonymousPage = () => {
           return (
             <GameCard
               key={index}
+              dealId={i.external_id}
               gameImage={i.image_url}
               gameTitle={i.game_name}
               normalPrice={i.normal_price}

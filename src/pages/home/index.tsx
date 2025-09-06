@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import InputSelect from "../../components/atoms/inputSelect";
-import { getDeals, getStore } from "../../services/services";
-import styles from "./home.module.scss";
 import { useDispatch } from "react-redux";
-import { setLoading } from "../../store/slices/loadingSlice";
-import GameCard from "../../components/organisms/gameCard";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { routePath } from "../../utils/routePath";
+import { useSearchParams } from "react-router-dom";
 import Button from "../../components/atoms/button";
+import InputSelect from "../../components/atoms/inputSelect";
+import GameCard from "../../components/organisms/gameCard";
+import { getDeals, getStore } from "../../services/services";
+import { setLoading } from "../../store/slices/loadingSlice";
+import styles from "./home.module.scss";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [storeList, setStoreList] = useState<Store[]>([]);
   const [dealsList, setDealsList] = useState<DealsList[]>([]);
@@ -139,6 +137,7 @@ const Home = () => {
           dealsList.map((deal) => (
             <GameCard
               key={deal.external_id}
+              dealId={deal.external_id}
               gameImage={deal.image_url}
               gameTitle={deal.game_name}
               normalPrice={deal.normal_price}
