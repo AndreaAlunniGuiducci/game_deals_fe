@@ -16,4 +16,5 @@ declare interface DealsList {
   deal_rating: number;
   release_date: number;
   rating_text: string;
+  deal_link: string
 }
