@@ -25,6 +25,7 @@ const DealDetail = () => {
       }
     }
   };
+  
   useEffect(() => {
     retrieveDealDetail();
   }, [dealId]);
@@ -56,7 +57,7 @@ const DealDetail = () => {
         </ul>
       </div>
       <div className={styles.ctaContainer}>
-        <Button onClick={() => navigate(routePath.home)}>Back to list</Button>
+        <Button variant='outline' onClick={() => navigate(routePath.home)}>Back to list</Button>
         <Button>Go to store page</Button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { addUser } from "../utils/addUser";
 import { getJwt } from "../utils/getJwt";
 import { routePath } from "../utils/routePath";
 
-const BASE_URL = "http://127.0.0.1:8000/api/";
+const BASE_URL = import.meta.env.VITE_URL_SERVICES;
 const token = getJwt();
 
 const params = token
